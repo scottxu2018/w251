@@ -1,0 +1,20 @@
+FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
+# Install necessary packages
+RUN apt-get update
+RUN apt-get install -y python-opencv \
+                    python-pip \
+                    libopencv-dev \
+                    libcanberra-gtk3-module \
+                    vim-tiny \
+                    mosquitto-clients
+# Install paho mqtt to send messages to broker
+RUN pip install paho-mqtt
+RUN mkdir /hw3
+#RUN mkdir /hw3/storage
+COPY . /hw3
+WORKDIR /hw3
+#ADD ~/storage /hw3/storage
+ENTRYPOINT [ "python" ]
+CMD [ "write.py" ]
+
