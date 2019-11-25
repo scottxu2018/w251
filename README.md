@@ -1,13 +1,13 @@
 # w251_finalproject
 
-# Commands used on VM to start docker image / etc
- docker run --rm --runtime=nvidia -it -p 8888:8888 -v /root:/root w251/hw06:x86-64
-# Commands used to download s3fs object storage
-# This command pulls from the edible bucket into a folder root/train2
-s3cmd sync s3://edible train2
+## Commands used on VM to start docker image / etc
+    docker run --rm --runtime=nvidia -it -p 8888:8888 -v /root:/root w251/hw06:x86-64
+## Commands used to download s3fs object storage
+## This command pulls from the edible bucket into a folder root/train2
+    s3cmd sync s3://edible train2
 
-# This python script takes the flattened image file names and saves them in the correct
-# Folder structure so that the training file works properly
+## This python script takes the flattened image file names and saves them in the correct folder structure so that the training file works properly
+```
 import os, sys, glob
 from shutil import copyfile
 
@@ -20,6 +20,7 @@ for file in files:
     if not os.direxists(filepath + '/' + folder):
         os.mkdir(filepath + '/' + folder)
     copyfile(file, filepath + '/' + folder + '/' + str(x) + '.jpg')
+```
 
 
 # Training
